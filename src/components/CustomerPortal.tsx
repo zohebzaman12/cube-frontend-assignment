@@ -27,8 +27,9 @@ const CustomerPortal: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
   const [loadMore, _setLoadMore] = useState<number>(20);
+  const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
 
-  //function to fetch data from api
+  // function to fetch data from API
   const fetchCustomersData = async () => {
     try {
       setLoading(true);
@@ -63,7 +64,7 @@ const CustomerPortal: React.FC = () => {
     fetchCustomersData();
   }, []);
 
-  //handle lazy loading of data cards
+  // handle lazy loading of data cards
   const handleScroll = useCallback(
     (e: React.UIEvent<HTMLDivElement>) => {
       const isBottom =
@@ -98,9 +99,20 @@ const CustomerPortal: React.FC = () => {
   }
 
   return (
-    <div className="flex items-stretch gap-8">
+    <div className="flex flex-col sm:flex-row items-stretch gap-8">
+      {/* Hamburger menu button */}
+      <button
+        className="sm:hidden p-2 bg-gray-800 text-white"
+        onClick={() => setIsMenuOpen(!isMenuOpen)}
+      >
+        ☰ Customer List
+      </button>
+
+      {/* Contact list cards */}
       <div
-        className="w-1/3 max-h-[150vh] overflow-y-auto overflow-x-clip overscroll-x-none custom-scrollbar"
+        className={`w-full sm:w-1/3 max-h-[150vh] overflow-y-auto overflow-x-clip overscroll-x-none custom-scrollbar ${
+          isMenuOpen ? "block" : "hidden sm:block"
+        }`}
         onScroll={handleScroll}
       >
         {displayedCustomers.map((element) => (
@@ -121,7 +133,9 @@ const CustomerPortal: React.FC = () => {
           </div>
         )}
       </div>
-      <div className="w-2/3">
+
+      {/* Customer details */}
+      <div className="w-full sm:w-2/3">
         <CustomerDetails customer={selectedCustomer} />
       </div>
     </div>
