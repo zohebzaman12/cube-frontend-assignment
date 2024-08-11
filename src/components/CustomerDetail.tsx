@@ -26,10 +26,11 @@ const CustomerDetails: React.FC<CustomerDetailsProps> = ({ customer }) => {
   const [photos, setPhotos] = useState<Photo[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
+  let intervalId: NodeJS.Timeout | null = null;
 
   const generatePlaceholderPhotos = () => {
     const placeholderPhotos = Array.from({ length: 9 }).map(() => ({
-      url: "https://via.placeholder.com/1200x800?text=Loading...", // Placeholder image URL
+      url: "https://via.placeholder.com/800x600?text=Loading...",
       isPlaceholder: true,
     }));
     setPhotos(placeholderPhotos);
@@ -47,15 +48,15 @@ const CustomerDetails: React.FC<CustomerDetailsProps> = ({ customer }) => {
           const screenWidth = window.visualViewport
             ? window.visualViewport.width
             : window.innerWidth;
-          let width = 1200;
-          let height = 800;
+          let width = 800; 
+          let height = 600;
 
           if (screenWidth < 640) {
-            width = 600;
-            height = 400;
+            width = 400; 
+            height = 300;
           } else if (screenWidth < 1024) {
-            width = 900;
-            height = 600;
+            width = 600; 
+            height = 450;
           }
 
           const photoPromises = Array.from({ length: 9 }).map(async () => {
@@ -82,9 +83,11 @@ const CustomerDetails: React.FC<CustomerDetailsProps> = ({ customer }) => {
       };
 
       fetchPhotos();
-      const intervalId = setInterval(fetchPhotos, 10000); // 10 seconds
+      intervalId = setInterval(fetchPhotos, 10000);
 
-      return () => clearInterval(intervalId);
+      return () => {
+        if (intervalId) clearInterval(intervalId); // Clear interval when the component unmounts or customer changes
+      };
     }
   }, [customer]);
 
