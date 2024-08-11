@@ -1,50 +1,48 @@
-# React + TypeScript + Vite
+# Customer Portal Application
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project is a responsive and interactive customer portal application built using **React**, **TypeScript**, and **Tailwind CSS**. The application fetches and displays customer data from an external API, providing users with a dynamic interface to browse customer details. It features a detailed customer information section, lazy-loaded customer list, and a photo gallery with placeholder images while loading.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Data Fetching from API**: Fetches customer data from an external API and maps it to a structured format, including randomly assigned titles.
+- **Lazy Loading**: Implements lazy loading for the customer list, displaying an infinite scroll of customer cards with the ability to load more data as the user scrolls.
+- **Detailed Customer View**: Displays detailed information about selected customers, including name, title, address, contact details, and a photo gallery.
+- **Photo Gallery**: Dynamically loads and displays photos related to the selected customer, with placeholder images shown during loading.
+- **Error Handling**: Provides error handling with user-friendly messages in case of data fetching issues.
 
-## Expanding the ESLint configuration
+## Technologies Used
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- **React**: JavaScript library for building user interfaces.
+- **TypeScript**: A statically typed superset of JavaScript that adds type safety to the codebase.
+- **Tailwind CSS**: Utility-first CSS framework for styling.
+- **React Loader Spinner**: Used for displaying loading animations during data fetching.
+- **Picsum.photos**: Provides placeholder images for the photo gallery.
 
-- Configure the top-level `parserOptions` property like this:
+## Getting Started
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+1. **Clone the repository:**
+   ```bash
+   git clone <repository-url>
+   ```
+2. **Install dependencies:**
+   ```bash
+   npm install
+   ```
+3. **Start the development server:**
+   ```bash
+   npm start
+   ```
+4. **Build for production:**
+   ```bash
+   npm run build
+   ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+## Live Demo
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+You can check out the live version of the application at https://cube-frontend-assignment.netlify.app/.
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+## Screenshots
+
+[![screencapture-cube-frontend-assignment-netlify-app-2024-08-11-16-53-11.png](https://i.postimg.cc/3RThRqfC/screencapture-cube-frontend-assignment-netlify-app-2024-08-11-16-53-11.png)](https://postimg.cc/Z9V2swSC)
+
+---

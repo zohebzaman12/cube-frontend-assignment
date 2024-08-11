@@ -28,6 +28,7 @@ const CustomerPortal: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
   const [loadMore, _setLoadMore] = useState<number>(20);
 
+  //function to fetch data from api
   const fetchCustomersData = async () => {
     try {
       setLoading(true);
@@ -62,6 +63,7 @@ const CustomerPortal: React.FC = () => {
     fetchCustomersData();
   }, []);
 
+  //handle lazy loading of data cards
   const handleScroll = useCallback(
     (e: React.UIEvent<HTMLDivElement>) => {
       const isBottom =
@@ -98,7 +100,7 @@ const CustomerPortal: React.FC = () => {
   return (
     <div className="flex items-stretch gap-8">
       <div
-        className="w-1/3 max-h-[130vh] overflow-y-auto overflow-x-clip overscroll-x-none custom-scrollbar"
+        className="w-1/3 max-h-[150vh] overflow-y-auto overflow-x-clip overscroll-x-none custom-scrollbar"
         onScroll={handleScroll}
       >
         {displayedCustomers.map((element) => (
